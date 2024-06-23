@@ -6,6 +6,53 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.viewsets import ModelViewSet
+
+
+# viewsets
+class ProductViewSet(ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+
+class CategoryViewSet(ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+
+
+
+
+
+
+# generics views ebis sashualebit bevrad martivad vagvarebt saqmes, ar gvchirdeba zedmetad post da get requestebis gawera
+
+# Generics views
+
+# # 1
+# class ApiProducts(ListCreateAPIView):
+#     queryset = Product.objects.all()
+#     serializer_class = ProductSerializer
+#
+#
+# # 2
+# class ApiProduct(RetrieveUpdateDestroyAPIView):
+#     queryset = Product.objects.all()
+#     serializer_class = ProductSerializer
+#
+#
+# # 3
+# class ApiCategories(ListCreateAPIView):
+#     queryset = Category.objects.all()
+#     serializer_class = CategorySerializer
+#
+#
+# # 4
+# class ApiCategory(RetrieveUpdateDestroyAPIView):
+#     queryset = Category.objects.all()
+#     serializer_class = CategorySerializer
+
 
 
 # The two functions api_products and ApiProducts achieve the same functionality of
@@ -15,36 +62,6 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 # In summary, both approaches achieve the same goal, but the class-based view provides a
 # more structured and organized way to define views, especially for more complex views that
 # require additional methods or functionalities.
-
-
-
-# generics views ebis sashualebit bevrad martivad vagvarebt saqmes, ar gvchirdeba zedmetad post da get requestebis gawera
-
-
-# Generics views
-
-# 1
-class ApiProducts(ListCreateAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-
-
-# 2
-class ApiProduct(RetrieveUpdateDestroyAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-
-
-# 3
-class ApiCategories(ListCreateAPIView):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
-
-
-# 4
-class ApiCategory(RetrieveUpdateDestroyAPIView):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
 
 
 # # Class-based view (APIView)
