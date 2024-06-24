@@ -2,29 +2,29 @@ from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
 from .serializers import ProductSerializer, CategorySerializer
 from storeapp.models import Product, Category
+from .filters import ProductFilter
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.filters import SearchFilter, OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 # viewsets
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filterset_class = ProductFilter
+    search_fields = ['name', 'description']
+    ordering_fields = ['old_price']  # sorts ascending or descending
 
 
 class CategoryViewSet(ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-
-
-
-
-
-
-
 
 # generics views ebis sashualebit bevrad martivad vagvarebt saqmes, ar gvchirdeba zedmetad post da get requestebis gawera
 
@@ -52,7 +52,6 @@ class CategoryViewSet(ModelViewSet):
 # class ApiCategory(RetrieveUpdateDestroyAPIView):
 #     queryset = Category.objects.all()
 #     serializer_class = CategorySerializer
-
 
 
 # The two functions api_products and ApiProducts achieve the same functionality of
