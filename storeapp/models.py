@@ -61,35 +61,35 @@ class Product(models.Model):
 
 
 class Cart(models.Model):
-    id = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True)
     created = models.DateTimeField(auto_now_add=True)
 
-    @property
-    def num_of_items(self):
-        cartitems = self.cartitems_set.all()
-        qtysum = sum([qty.quantity for qty in cartitems])
-        return qtysum
+    # @property
+    # def num_of_items(self):
+    #     cartitems = self.cartitems_set.all()
+    #     qtysum = sum([qty.quantity for qty in cartitems])
+    #     return qtysum
 
-    @property
-    def cart_total(self):
-        cartitems = self.cartitems_set.all()
-        qtysum = sum([qty.subTotal for qty in cartitems])
-        return qtysum
+    # @property
+    # def cart_total(self):
+    #     cartitems = self.cartitems_set.all()
+    #     qtysum = sum([qty.subTotal for qty in cartitems])
+    #     return qtysum
 
     def __str__(self):
-        return str(self.cart_id)
+        return str(self.id)
 
 
 class Cartitems(models.Model):
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, blank=True, null=True)
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='itemsss', null=True, blank=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True, related_name='cartitems')
     quantity = models.IntegerField(default=0)
 
-    @property
-    def subTotal(self):
-        total = self.quantity * self.product.price
-
-        return total
+    # @property
+    # def subTotal(self):
+    #     total = self.quantity * self.product.price
+    #
+    #     return total
 
 
 # class SavedItem(models.Model):
