@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from storeapp.models import Product, Category
+from storeapp.models import Product, Category, Review
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -15,3 +15,13 @@ class ProductSerializer(serializers.ModelSerializer):
 
     # category = serializers.StringRelatedField()
     category = CategorySerializer()
+
+
+class ReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = ['id', 'date_created', 'name', 'description']
+
+    def create(self, validated_data):
+        product_id = self.context["product_id"]
+        return Review.objects.create(product_id=product_id, **validated_data)

@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
-from .serializers import ProductSerializer, CategorySerializer
-from storeapp.models import Product, Category
+from .serializers import ProductSerializer, CategorySerializer, ReviewSerializer
+from storeapp.models import Product, Category, Review
 from .filters import ProductFilter
 from rest_framework.response import Response
 from rest_framework import status
@@ -29,6 +29,18 @@ class ProductViewSet(ModelViewSet):
 class CategoryViewSet(ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+
+class ReviewViewSet(ModelViewSet):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
+
+    def get_queryset(self):
+        return Review.objects.filter(product_id=self.kwargs['productt_pk'])
+
+    def get_serializer_context(self):
+        return {"product_id": self.kwargs["productt_pk"]}
+
 
 # generics views ebis sashualebit bevrad martivad vagvarebt saqmes, ar gvchirdeba zedmetad post da get requestebis gawera
 

@@ -2,8 +2,8 @@ from email.policy import default
 from django.db import models
 import uuid
 from django.contrib.auth.models import User
-from django.conf import settings
-from UserProfile.models import Customer
+# from django.conf import settings
+# from UserProfile.models import Customer
 
 
 class Category(models.Model):
@@ -16,6 +16,16 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Review(models.Model):
+    product = models.ForeignKey("Product", on_delete=models.CASCADE, related_name="reviews")
+    date_created = models.DateTimeField(auto_now_add=True)
+    description = models.TextField(default="description")
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.description
 
 
 class Product(models.Model):
@@ -51,11 +61,11 @@ class Product(models.Model):
 
 
 class Cart(models.Model):
-    owner = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, blank=True)
+    # owner = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, blank=True)
     cart_id = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
     created = models.DateTimeField(auto_now_add=True)
-    completed = models.BooleanField(default=False)
-    session_id = models.CharField(max_length=100)
+    # completed = models.BooleanField(default=False)
+    # session_id = models.CharField(max_length=100)
 
     @property
     def num_of_items(self):
@@ -85,10 +95,10 @@ class Cartitems(models.Model):
         return total
 
 
-class SavedItem(models.Model):
-    owner = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, blank=True)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True)
-    added = models.IntegerField(default=0)
-
-    def __str__(self):
-        return str(self.id)
+# class SavedItem(models.Model):
+#     owner = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, blank=True)
+#     product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True)
+#     added = models.IntegerField(default=0)
+#
+#     def __str__(self):
+#         return str(self.id)
