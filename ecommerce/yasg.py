@@ -9,7 +9,7 @@ schema_view = get_schema_view(
         default_version='v1',
         description="API documentation for My Project",
         terms_of_service="https://www.google.com/policies/terms/",
-        contact=openapi.Contact(email="contact@yourproject.local"),
+        contact=openapi.Contact(email="khomaainfo@gmail.com"),
         license=openapi.License(name="BSD License"),
     ),
     public=True,
