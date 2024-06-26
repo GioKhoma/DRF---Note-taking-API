@@ -1,16 +1,17 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
-from .serializers import ProductSerializer, CategorySerializer, ReviewSerializer
-from storeapp.models import Product, Category, Review
+from .serializers import ProductSerializer, CategorySerializer, ReviewSerializer, CartSerializer
+from storeapp.models import Product, Category, Review, Cart, Cartitems
 from .filters import ProductFilter
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.mixins import CreateModelMixin
 
 
 # viewsets
@@ -40,6 +41,21 @@ class ReviewViewSet(ModelViewSet):
 
     def get_serializer_context(self):
         return {"product_id": self.kwargs["productt_pk"]}
+
+
+class CartViewSet(CreateModelMixin, GenericViewSet):
+    queryset = Cart.objects.all()
+    serializer_class = CartSerializer
+
+
+
+
+
+
+
+
+
+
 
 
 # generics views ebis sashualebit bevrad martivad vagvarebt saqmes, ar gvchirdeba zedmetad post da get requestebis gawera
