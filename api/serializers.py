@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from storeapp.models import Product, Category, Review, Cart, Cartitems
+from storeapp.models import Product, Category, Review, Cart, Cartitems, ProductImage
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -8,13 +8,35 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ['category_id', 'title', 'slug']
 
 
+class ProductImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductImage
+        fields = ['id', 'product', 'image']
+
+
 class ProductSerializer(serializers.ModelSerializer):
+    imagesss = ProductImageSerializer(many=True, read_only=True)
+    uploaded_images = serializers.ListField(
+        child=serializers.ImageField(max_length=1000000, allow_empty_file=False, use_url=False),
+        write_only=True
+    )
+
     class Meta:
         model = Product
-        fields = ['id', 'name', 'description', 'category', 'slug', 'inventory', 'old_price', 'price']
+        fields = ['id', 'name', 'description',
+                  # 'category', 'slug', 'inventory',
+                  'price', 'imagesss', 'uploaded_images']
 
     # category = serializers.StringRelatedField()
-    category = CategorySerializer()
+    # category = CategorySerializer()
+
+    def create(self, validated_data):
+        uploaded_images = validated_data.pop('uploaded_images')
+        product = Product.objects.create(**validated_data)
+        for image in uploaded_images:
+            newproduct_image = ProductImage.objects.create(product=product, image=image)
+
+        return product
 
 
 class ReviewSerializer(serializers.ModelSerializer):

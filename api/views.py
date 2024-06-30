@@ -11,7 +11,7 @@ from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.pagination import PageNumberPagination
-from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin, DestroyModelMixin
+from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin, DestroyModelMixin, ListModelMixin
 
 
 # viewsets
@@ -43,9 +43,12 @@ class ReviewViewSet(ModelViewSet):
         return {"product_id": self.kwargs["productt_pk"]}
 
 
-class CartViewSet(CreateModelMixin, RetrieveModelMixin, DestroyModelMixin, GenericViewSet):
+class CartViewSet(CreateModelMixin, RetrieveModelMixin, DestroyModelMixin, ListModelMixin, GenericViewSet):
     queryset = Cart.objects.all()
     serializer_class = CartSerializer
+
+
+
 
 
 

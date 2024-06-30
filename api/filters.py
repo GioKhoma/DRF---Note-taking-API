@@ -7,5 +7,5 @@ class ProductFilter(FilterSet):
         model = Product
         fields = {
             'category': ['exact'],
-            'old_price': ['gt', 'lt']  # means lass than and greater than
+            'price': ['gt', 'lt']  # means lass than and greater than
         }
