@@ -47,7 +47,7 @@ class CartItemSerializer(serializers.ModelSerializer):
 
 class CartSerializer(serializers.ModelSerializer):
     id = serializers.UUIDField(read_only=True)
-    itemsss = CartItemSerializer(many=True)
+    itemsss = CartItemSerializer(many=True, read_only=True)
     grand_total = serializers.SerializerMethodField(method_name='main_total')
 
     class Meta:
