@@ -2,6 +2,8 @@ from email.policy import default
 from django.db import models
 import uuid
 from django.contrib.auth.models import User
+
+
 # from django.conf import settings
 # from UserProfile.models import Customer
 
@@ -41,8 +43,6 @@ class Product(models.Model):
     top_deal = models.BooleanField(default=False)
     flash_sales = models.BooleanField(default=False)
 
-
-
     def __str__(self):
         return self.name
 
@@ -64,8 +64,6 @@ class Cartitems(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='itemsss', null=True, blank=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True, related_name='cartitems')
     quantity = models.IntegerField(default=0)
-
-
 
 # class SavedItem(models.Model):
 #     owner = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, blank=True)
