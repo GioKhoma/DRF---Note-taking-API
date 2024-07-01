@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from storeapp.models import Product, Category, Review, Cart, Cartitems, ProductImage
+from storeapp.models import Product, Category, Review, Cart, CartItems, ProductImage
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -60,10 +60,10 @@ class CartItemSerializer(serializers.ModelSerializer):
     sub_total = serializers.SerializerMethodField(method_name='total')
 
     class Meta:
-        model = Cartitems
+        model = CartItems
         fields = ['id', 'cart', 'product', 'quantity', 'sub_total']
 
-    def total(self, cartitem: Cartitems):
+    def total(self, cartitem: CartItems):
         return cartitem.quantity * cartitem.product.price
 
 
