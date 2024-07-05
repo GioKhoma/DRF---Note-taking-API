@@ -52,7 +52,7 @@ class CartItemViewSet(ModelViewSet):
     #  gamoaqvs yvela nivti
     # queryset = CartItems.objects.all()
 
-    # gamoaqvs mxolod konkretuli cart-is nivti
+    # gamoaqvs mxolod konkretuli cart-is nivtii
     def get_queryset(self):
         return CartItems.objects.filter(cart_id=self.kwargs["cartt_pk"])
 
