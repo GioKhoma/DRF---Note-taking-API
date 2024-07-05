@@ -63,7 +63,7 @@ class Cart(models.Model):
 class CartItems(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='itemsss', null=True, blank=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True, related_name='cartitems')
-    quantity = models.IntegerField(default=0)
+    quantity = models.PositiveSmallIntegerField(default=0)
 
 # class SavedItem(models.Model):
 #     owner = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, blank=True)

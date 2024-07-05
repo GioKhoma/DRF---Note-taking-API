@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
-from .serializers import ProductSerializer, CategorySerializer, ReviewSerializer, CartSerializer, CartItemSerializer
+from .serializers import ProductSerializer, CategorySerializer, ReviewSerializer, CartSerializer, CartItemSerializer, \
+    AddCartItemSerializer
 from storeapp.models import Product, Category, Review, Cart, CartItems
 from .filters import ProductFilter
 from rest_framework.response import Response
@@ -58,13 +59,14 @@ class CartItemViewSet(ModelViewSet):
 
     serializer_class = CartItemSerializer
 
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return AddCartItemSerializer
 
+        return CartItemSerializer
 
-
-
-
-
-
+    def get_serializer_context(self):
+        return {'cart_id': self.kwargs['cartt_pk']}
 
 
 
