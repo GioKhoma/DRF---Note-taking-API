@@ -39,11 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'djoser',
     'drf_yasg',
     'storeapp',
     'api',
     'core',
-    'UserProfile',
     'django_filters',
 ]
 
@@ -130,6 +130,15 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# REST_FRAMEWORK = {
-#     'PAGE_SIZE': 2
-# }
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+
+    # 'PAGE_SIZE': 2
+}
+
+SIMPLE_JWT = {
+   'AUTH_HEADER_TYPES': ('JWT',),
+}
