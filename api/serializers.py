@@ -67,6 +67,13 @@ class CartItemSerializer(serializers.ModelSerializer):
         return cartitem.quantity * cartitem.product.price
 
 
+class UpdateCartItemSerializer(serializers.ModelSerializer):
+    # id = serializers.IntegerField(read_only=True)
+    class Meta:
+        model = CartItems
+        fields = ['quantity']
+
+
 class CartSerializer(serializers.ModelSerializer):
     id = serializers.UUIDField(read_only=True)
     itemsss = CartItemSerializer(many=True, read_only=True)
