@@ -1,7 +1,9 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
-from .serializers import ProductSerializer, CategorySerializer, ReviewSerializer, CartSerializer, CartItemSerializer, AddCartItemSerializer, UpdateCartItemSerializer
-from storeapp.models import Product, Category, Review, Cart, CartItems
+from .serializers import (ProductSerializer, CategorySerializer, ReviewSerializer,
+                          CartSerializer, CartItemSerializer, AddCartItemSerializer,
+                          UpdateCartItemSerializer, ProfileSerializer)
+from storeapp.models import Product, Category, Review, Cart, CartItems, Profile
 from .filters import ProductFilter
 from rest_framework.response import Response
 from rest_framework import status
@@ -11,8 +13,10 @@ from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.pagination import PageNumberPagination
-from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin, DestroyModelMixin, ListModelMixin
+from rest_framework.mixins import (CreateModelMixin, RetrieveModelMixin,
+                                   DestroyModelMixin, ListModelMixin)
 
+from rest_framework.parsers import MultiPartParser, FormParser
 
 # viewsets
 class ProductViewSet(ModelViewSet):
@@ -72,6 +76,21 @@ class CartItemViewSet(ModelViewSet):
 
     def get_serializer_context(self):
         return {'cart_id': self.kwargs['cartt_pk']}
+
+
+class ProfileViewSet(ModelViewSet):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    parser_classes = (MultiPartParser, FormParser)
+
+    def create(self, request, *args, **kwargs):
+        name = request.data['name']
+        bio = request.data['bio']
+        picture = request.data['picture']
+
+        Profile.objects.create(name=name, bio=bio, picture=picture)
+
+        return Response('Profile created successfully', status=status.HTTP_200_OK)
 
 
 

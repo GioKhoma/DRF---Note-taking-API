@@ -65,6 +65,15 @@ class CartItems(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True, related_name='cartitems')
     quantity = models.PositiveSmallIntegerField(default=0)
 
+
+class Profile(models.Model):
+    name = models.CharField(max_length=100)
+    bio = models.TextField()
+    picture = models.ImageField(upload_to='img', blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
 # class SavedItem(models.Model):
 #     owner = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, blank=True)
 #     product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True)
