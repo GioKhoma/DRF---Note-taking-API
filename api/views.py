@@ -17,6 +17,7 @@ from rest_framework.mixins import (CreateModelMixin, RetrieveModelMixin,
                                    DestroyModelMixin, ListModelMixin)
 
 from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.permissions import IsAuthenticated
 
 # viewsets
 class ProductViewSet(ModelViewSet):
@@ -94,11 +95,18 @@ class ProfileViewSet(ModelViewSet):
 
 
 class OrderViewSet(ModelViewSet):
+    permission_classes = [IsAuthenticated]
     serializer_class = OrderSerializer
-    queryset = Order.objects.all()
 
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_staff:
+            return Order.objects.all()
 
+        return Order.objects.filter(owner=user)
 
+    # "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcyMDY0MzE2OCwiaWF0IjoxNzIwNDcwMzY4LCJqdGkiOiJjNDkxZjBkOWY1M2M0Y2NkYjk1NmRmNTMyYmY4MTc2YSIsInVzZXJfaWQiOjh9.hiP0gYtDIT5UQmKL3cj81E_2eBvnjrB7Nz4GYwQDXcc",
+    # "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNTU2NzY4LCJpYXQiOjE3MjA0NzAzNjgsImp0aSI6IjkxZWZiZTg2MTQ5ZjQ2NGI4Y2ViZTU2ZGEwY2NkYmIxIiwidXNlcl9pZCI6OH0.Oltn8_3EmQiH4UpDGjDX62hNpclhnXK0lAX_9a9yUA0"
 
 
 
