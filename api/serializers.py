@@ -1,5 +1,8 @@
 from rest_framework import serializers
-from storeapp.models import Product, Category, Review, Cart, CartItems, ProductImage, Profile
+from storeapp.models import (Product, Category, Review,
+                             Cart, CartItems,
+                             ProductImage,
+                             Profile)
 
 
 class CategorySerializer(serializers.ModelSerializer):
