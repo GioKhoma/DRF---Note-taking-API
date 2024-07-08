@@ -2,8 +2,8 @@ from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
 from .serializers import (ProductSerializer, CategorySerializer, ReviewSerializer,
                           CartSerializer, CartItemSerializer, AddCartItemSerializer,
-                          UpdateCartItemSerializer, ProfileSerializer)
-from storeapp.models import Product, Category, Review, Cart, CartItems, Profile
+                          UpdateCartItemSerializer, ProfileSerializer, OrderSerializer)
+from storeapp.models import Product, Category, Review, Cart, CartItems, Profile, Order, OrderItem
 from .filters import ProductFilter
 from rest_framework.response import Response
 from rest_framework import status
@@ -91,6 +91,13 @@ class ProfileViewSet(ModelViewSet):
         Profile.objects.create(name=name, bio=bio, picture=picture)
 
         return Response('Profile created successfully', status=status.HTTP_200_OK)
+
+
+class OrderViewSet(ModelViewSet):
+    serializer_class = OrderSerializer
+    queryset = Order.objects.all()
+
+
 
 
 

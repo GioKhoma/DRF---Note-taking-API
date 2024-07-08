@@ -2,7 +2,7 @@ from rest_framework import serializers
 from storeapp.models import (Product, Category, Review,
                              Cart, CartItems,
                              ProductImage,
-                             Profile)
+                             Profile, Order, OrderItem)
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -128,3 +128,9 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ['id', 'name', 'bio', 'picture']
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = ['id', 'placed_at', 'pending_status', 'owner']
