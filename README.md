@@ -34,4 +34,5 @@ Welcome to the **E-Commerce API** project! This repository contains a backend ap
    ```sh
    git clone https://github.com/your-username/e-commerce-api.git
    cd e-commerce-api
->>>>>>> ca22e7cacc54384f6d468912ccc35f68e6fa2fa0
+
+
