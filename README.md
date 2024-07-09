@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # E-Commerce API with Django Rest Framework
 
 Welcome to the **E-Commerce API** project! This repository contains a backend application built using Django and Django Rest Framework, designed to provide a robust API for an e-commerce platform. The API supports various functionalities necessary for managing an online store, including product management, user authentication, and order processing.
@@ -56,4 +55,3 @@ Welcome to the **E-Commerce API** project! This repository contains a backend ap
 ### Access the API documentation:
 - Navigate to http://127.0.0.1:8000/swagger/ in your web browser to view the API documentation.
 
->>>>>>> ca22e7cacc54384f6d468912ccc35f68e6fa2fa0
