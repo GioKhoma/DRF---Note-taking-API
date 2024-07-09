@@ -32,7 +32,11 @@ Welcome to the **E-Commerce API** project! This repository contains a backend ap
 
 1. **Clone the repository**:
    ```sh
-   git clone https://github.com/your-username/e-commerce-api.git
-   cd e-commerce-api
+   git clone https://github.com/GioKhoma/Rest_Framework.git
+   cd Rest_Framework
 
-
+2. **Create and activate a virtual environment**:
+   python -m venv .venv
+   .venv\Scripts\activate  # On Windows
+   source .venv/bin/activate  # On macOS/Linux
+>>>>>>> ca22e7cacc54384f6d468912ccc35f68e6fa2fa0
