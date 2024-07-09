@@ -36,7 +36,24 @@ Welcome to the **E-Commerce API** project! This repository contains a backend ap
    cd Rest_Framework
 
 2. **Create and activate a virtual environment**:
+   ```sh
    python -m venv .venv
    .venv\Scripts\activate  # On Windows
    source .venv/bin/activate  # On macOS/Linux
+   
+3. **Install the dependencies**:
+   ```sh
+   pip install -r requirements.txt
+   
+4. **Apply migrations**:
+   ```sh
+   python manage.py migrate
+
+5. **Run the development server**:
+   ```sh
+   python manage.py runserver
+
+### Access the API documentation:
+- Navigate to http://127.0.0.1:8000/swagger/ in your web browser to view the API documentation.
+
 >>>>>>> ca22e7cacc54384f6d468912ccc35f68e6fa2fa0
