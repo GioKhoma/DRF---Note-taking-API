@@ -22,7 +22,6 @@ Welcome to the **E-Commerce API** project! This repository contains a backend ap
 ### Prerequisites
 
 - Python 3.8+
-- Docker (optional but recommended for containerization)
 - Virtual environment tool (e.g., `venv` or `virtualenv`)
 
 ### Installation
