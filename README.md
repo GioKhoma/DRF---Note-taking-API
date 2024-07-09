@@ -29,7 +29,6 @@ Welcome to the **E-Commerce API** project! This repository contains a backend ap
 1. **Clone the repository**:
    ```sh
    git clone https://github.com/GioKhoma/Rest_Framework.git
-   cd Rest_Framework
 
 2. **Create and activate a virtual environment**:
    ```sh
