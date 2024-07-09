@@ -8,7 +8,6 @@ Welcome to the **E-Commerce API** project! This repository contains a backend ap
 - **Product Management**: Create, update, delete, and view products with detailed information.
 - **Category Management**: Organize products into categories for better navigation.
 - **Cart and Order Management**: Add products to the cart, create orders, and track order status.
-- **Payment Processing**: Integration with payment gateways for seamless transactions (example placeholder, actual implementation may vary).
 - **Admin Panel**: Manage the platform using Django's built-in admin interface.
 
 ## Technologies Used
@@ -17,7 +16,6 @@ Welcome to the **E-Commerce API** project! This repository contains a backend ap
 - **Django Rest Framework**: Powerful and flexible toolkit for building Web APIs.
 - **SQLite**: Default database for development (can be switched to PostgreSQL or MySQL for production).
 - **JWT**: JSON Web Token for user authentication.
-- **Docker**: Containerization of the application for easy deployment.
 
 ## Getting Started
 
